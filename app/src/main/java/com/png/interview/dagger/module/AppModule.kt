@@ -11,6 +11,8 @@ import com.png.interview.weather.di.WeatherUseCaseModule
 
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 @Module(
     includes = [
@@ -37,4 +39,8 @@ class AppModule(val application: Application) {
     @Provides
     @ApplicationScope
     fun provideConnectivityManager(): ConnectivityManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    @Provides
+    @ApplicationScope
+    fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 }
